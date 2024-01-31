@@ -23,11 +23,11 @@
             background-color: #f2f2f2;
         }
 
-        div {text-align: center;}
+        
     </style>
 </head>
 <body>
-    <div>
+    <div style="text-align: center;" >
         <img src="{{public_path('logo/logo.png')}}" alt="logo" width="70" height="70">
         <h1>Member Contribution Statement</h1>
     </div>
@@ -45,7 +45,7 @@
             </tr>
         </thead>
     </table>
-    <div>
+    <div style="text-align: center;">
         <h3>Member Contribution summary Statement</h3>
     </div>
     <table>
@@ -77,6 +77,11 @@
             @endforeach
         </tbody>
     </table>
+
+    <div style="text-align: center;">
+        <p><i><b>Report generated on Date from TTR System<br> Contact : 07 for enquries</b></i></p>
+        
+    </div>
 
 </body>
 </html>
