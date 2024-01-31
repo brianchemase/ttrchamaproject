@@ -41,4 +41,35 @@ class ContributionsController extends Controller
 
         return view('dashone.postcontributions')->with($data);
     }
+
+
+    public function statement()
+    {
+        $contributions="";
+
+
+        $statements = [
+            '2022' => [100, 150, 200, 180, 120, 250, 300, 210, 180, 150, 200, 250],
+            '2021' => [90, 130, 180, 160, 110, 220, 280, 200, 170, 140, 190, 240],
+            // Add more years and contributions as needed
+        ];
+
+        $data=[
+            'contributions' => $contributions,
+            'statements' => $statements,
+            
+
+        ];
+
+        return view('dashone.statement')->with($data);
+    }
+
+
+
+
+
+
+
+
+    
 }
