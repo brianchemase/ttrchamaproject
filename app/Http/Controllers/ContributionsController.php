@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
+use PDF;
 
 class ContributionsController extends Controller
 {
@@ -61,7 +62,16 @@ class ContributionsController extends Controller
 
         ];
 
-        return view('dashone.statement')->with($data);
+       // return view('dashone.statement')->with($data);
+
+       // $pdf = PDF::loadView('dashone.statement', $data);
+       // return $pdf->download('ClientStatement.pdf');
+       // return $pdf->stream();
+
+
+        $pdf = PDF::loadView('dashone.statement', $data);
+        $pdf->setPaper('L', 'landscape');
+              return $pdf->stream();
     }
 
 

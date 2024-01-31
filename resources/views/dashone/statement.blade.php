@@ -22,12 +22,32 @@
         th {
             background-color: #f2f2f2;
         }
+
+        div {text-align: center;}
     </style>
 </head>
 <body>
-
-    <h1>Member Contribution Statement</h1>
-
+    <div>
+        <img src="{{public_path('logo/logo.png')}}" alt="logo" width="70" height="70">
+        <h1>Member Contribution Statement</h1>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th align="centre">Member name : Names</th>
+                <th align="centre">Member No: Number</th>
+                <th align="centre">Member Contact: 0712345678</th>
+                <th align="centre">Total Contribution: KES 25,000</th>
+            </tr>
+            <tr>
+                <th colspan="3">Year</th>
+                <th align="centre">Interest earned: KES 500</th>
+            </tr>
+        </thead>
+    </table>
+    <div>
+        <h3>Member Contribution summary Statement</h3>
+    </div>
     <table>
         <thead>
             <tr>
