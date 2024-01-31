@@ -33,6 +33,10 @@ Route::group(['prefix' => 'admins'], function() {
     Route::get('/MonthlyContributions', [ContributionsController::class, 'contributions'])->name('Monthlycontributions');
 
 
+    //statement
+    Route::get('/Statement', [ContributionsController::class, 'statement'])->name('mystatement');
+
+
 
     Route::get('/forms', [AdministrationController::class, 'form'])->name('dashoneform');
     Route::get('/Table', [AdministrationController::class, 'table'])->name('dashonetable');
