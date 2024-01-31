@@ -54,6 +54,8 @@ class AdministrationController extends Controller
             ];
         }
 
+        $Members = DB::table('membership')->get();
+
        // return $Members;
 
         $data=[
@@ -66,7 +68,7 @@ class AdministrationController extends Controller
         return view('dashone.memberregister')->with($data);
     }
 
-    public function store(Request $request)
+    public function StoreMemberData(Request $request)
     {
         // Validate the form data
         $validatedData = $request->validate([
@@ -115,6 +117,8 @@ class AdministrationController extends Controller
                 'updated_at' => now(),
             ];
         }
+
+        $Members = DB::table('membership')->get();
 
         $data=[
             'contributions' => $contributions,

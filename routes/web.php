@@ -24,13 +24,17 @@ Route::group(['prefix' => 'admins'], function() {
     Route::get('/', [AdministrationController::class, 'home'])->name('dashone');
     Route::get('/MemberRegister', [AdministrationController::class, 'memberregister'])->name('membersRegister');
 
-    Route::get('/StoreMemberData', [AdministrationController::class, 'StoreMemberData'])->name('StoreMemberData');
+    Route::post('/StoreMemberData', [AdministrationController::class, 'StoreMemberData'])->name('StoreMemberData');
 
     Route::get('/ViewMemberRegister', [AdministrationController::class, 'viewmemberregister'])->name('viewmembersRegister');
 
 
     //contributions
     Route::get('/MonthlyContributions', [ContributionsController::class, 'contributions'])->name('Monthlycontributions');
+    Route::get('/Memberfindsearch', [ContributionsController::class, 'search_entry'])->name('findmembersearch');//searching data
+
+
+    Route::post('/submit-contribution', [ContributionsController::class, 'submitContribution'])->name('submit-contribution');//save contributions
 
 
     //statement

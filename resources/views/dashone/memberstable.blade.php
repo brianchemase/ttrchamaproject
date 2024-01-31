@@ -37,17 +37,17 @@
                             <tbody>
                                 @foreach($Members as $member)
                                     <tr>
-                                        <td>{{ $member['memberno'] }}</td>
-                                        <td>{{ $member['full_name'] }}</td>
-                                        <td>{{ $member['id_number'] }}</td>
-                                        <td>{{ $member['phone_number'] }}</td>
+                                      <td>{{ $member->memberno }}</td>
+                                      <td>{{ $member->full_name }}</td>
+                                      <td>{{ $member->id_number }}</td>
+                                      <td>{{ $member->phone_number }}</td>
                                        
                                         <td>
-                                        <button type="button" class="btn btn-primary btn-sm btn-rounded" data-toggle="modal" data-target="#viewModal{{ $member['memberno'] }}"> <i class="mdi mdi-file-check btn-icon-prepend"></i> View
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded" data-toggle="modal" data-target="#viewModal{{ $member->memberno }}"> <i class="mdi mdi-file-check btn-icon-prepend"></i> View
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="viewModal{{ $member['memberno'] }}" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="viewModal{{ $member->memberno }}" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -57,12 +57,13 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p><strong>Full Name:</strong> {{ $member['full_name'] }}</p>
-                                        <p><strong>ID Number:</strong> {{ $member['id_number'] }}</p>
-                                        <p><strong>Phone Number:</strong> {{ $member['phone_number'] }}</p>
-                                        <p><strong>Email:</strong> {{ $member['email'] }}</p>
-                                        <p><strong>Birthday:</strong> {{ $member['birthday'] }}</p>
-                                        <p><strong>Residence:</strong> {{ $member['residence'] }}</p>
+                                          <p><strong>Member No:</strong> {{ $member->memberno }}</p>
+                                          <p><strong>Full Name:</strong> {{ $member->full_name }}</p>
+                                          <p><strong>ID Number:</strong> {{ $member->id_number }}</p>
+                                          <p><strong>Phone Number:</strong> {{ $member->phone_number }}</p>
+                                          <p><strong>Email:</strong> {{ $member->email }}</p>
+                                          <p><strong>Birthday:</strong> {{ $member->birthday }}</p>
+                                          <p><strong>Residence:</strong> {{ $member->residence }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

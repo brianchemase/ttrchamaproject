@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use PDF;
 
@@ -32,6 +34,8 @@ class ContributionsController extends Controller
                 'updated_at' => now(),
             ];
         }
+        $Members = DB::table('membership')->get();
+
 
         $data=[
             'contributions' => $contributions,
@@ -41,6 +45,85 @@ class ContributionsController extends Controller
         ];
 
         return view('dashone.postcontributions')->with($data);
+    }
+
+
+   
+
+    public function search_entry(Request $request)
+    { 
+
+
+        if(isset($_GET['q']))
+        {    
+            $memberno=$_GET['q'];
+          
+
+            $selectedOption = $request->input('q');
+
+            
+            //$selectedValues = explode(',', $selectedOption);
+            //$idNumber = $selectedValues[0];
+            //$loanId = $selectedValues[1];
+
+            $memberData = DB::table('membership')->where('memberno', $memberno)->first();
+           // return $memberData;
+           $Members = DB::table('membership')->get();
+            $data=[
+                
+                'Members' => $Members,
+                'memberData' => $memberData,
+        
+        ];
+
+        return view('dashone.postcontributions')->with($data);
+
+
+        }
+        else{
+            $contributions="";
+            $Members = DB::table('membership')->get();
+            $data=[
+                'contributions' => $contributions,
+                'Members' => $Members,
+        
+        ];
+
+        return view('dashone.postcontributions')->with($data);
+
+        }
+    }
+
+
+
+    public function submitContribution(Request $request)
+    {
+
+        $inputs = $request->all();
+        // Validate the form data
+        $validatedData = $request->validate([
+            'contributionDate' => 'required|date',
+            'contribution' => 'required|numeric',
+            'contributionMonth' => 'required|numeric',
+            // Add other validation rules as needed
+        ]);
+
+
+        $year = Carbon::now()->year;
+
+        // Save the form data to the database
+        // Assuming you have a "contributions" table
+        DB::table('monthly_contributions')->insert([
+            'member_no' => $request->input('memberno'),
+            'amount' => $validatedData['contribution'],
+            'payment_date' => $validatedData['contributionDate'],
+            'payment_month' => $validatedData['contributionMonth'],
+            'payment_year' => $year,
+            // Add other fields as needed
+        ]);
+
+        // Redirect back or wherever you want after submitting
+        return redirect()->back()->with('success', 'Contribution registered successfully!');
     }
 
 

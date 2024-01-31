@@ -12,7 +12,17 @@
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Registration</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Member Registration</li>
-                                @if(session('success'))
+                                
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <!-- member registration form -->
+                    <h4 class="card-title">TTR Member Registration Form</h4>
+                                    @if(session('success'))
                                         <div class="alert alert-success">
                                             {{ session('success') }}
                                         </div>
@@ -23,15 +33,6 @@
                                             {{ session('error') }}
                                         </div>
                                     @endif
-                </ol>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-md-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <!-- member registration form -->
-                    <h4 class="card-title">TTR Member Registration Form</h4>
                     <p class="card-description"> Capture Member details </p>
                     <form class="forms-sample" method="POST" action="{{ route('StoreMemberData') }}" autocomplete="off">
                         @csrf <!-- Add this line to include the CSRF token -->
@@ -103,18 +104,18 @@
                             <tbody>
                                 @foreach($Members as $member)
                                     <tr>
-                                        <td>{{ $member['memberno'] }}</td>
-                                        <td>{{ $member['full_name'] }}</td>
-                                        <td>{{ $member['id_number'] }}</td>
-                                        <td>{{ $member['phone_number'] }}</td>
+                                        <td>{{ $member->memberno }}</td>
+                                        <td>{{ $member->full_name }}</td>
+                                        <td>{{ $member->id_number }}</td>
+                                        <td>{{ $member->phone_number }}</td>
                                        
                                         <td>
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewModal{{ $member['memberno'] }}">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewModal{{ $member->memberno }}">
                             View
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="viewModal{{ $member['memberno'] }}" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="viewModal{{ $member->memberno }}" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -124,12 +125,13 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p><strong>Full Name:</strong> {{ $member['full_name'] }}</p>
-                                        <p><strong>ID Number:</strong> {{ $member['id_number'] }}</p>
-                                        <p><strong>Phone Number:</strong> {{ $member['phone_number'] }}</p>
-                                        <p><strong>Email:</strong> {{ $member['email'] }}</p>
-                                        <p><strong>Birthday:</strong> {{ $member['birthday'] }}</p>
-                                        <p><strong>Residence:</strong> {{ $member['residence'] }}</p>
+                                        <p><strong>Member No:</strong> {{ $member->memberno }}</p>
+                                        <p><strong>Full Name:</strong> {{ $member->full_name }}</p>
+                                        <p><strong>ID Number:</strong> {{ $member->id_number }}</p>
+                                        <p><strong>Phone Number:</strong> {{ $member->phone_number }}</p>
+                                        <p><strong>Email:</strong> {{ $member->email }}</p>
+                                        <p><strong>Birthday:</strong> {{ $member->birthday }}</p>
+                                        <p><strong>Residence:</strong> {{ $member->residence }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
