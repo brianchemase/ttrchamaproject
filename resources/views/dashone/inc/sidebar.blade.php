@@ -59,6 +59,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{route('Monthlycontributions')}}">Register Contribution</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{route('memberstatement')}}">Generate Statement</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{route('viewcontributingMembers')}}">Contributing Members</a></li>
                 </ul>
               </div>
             </li>

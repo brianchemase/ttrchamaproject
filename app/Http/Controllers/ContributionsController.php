@@ -193,6 +193,114 @@ class ContributionsController extends Controller
     }
 
 
+    public function tablestatement($memberno)
+    {
+        //$memberno="411";
+        //$memberno = $request->input('memberno');
+        $memberData = DB::table('membership')->where('memberno', $memberno)->first();
+
+        $contributions="";
+        $Totalcontributions = DB::table('monthly_contributions')
+                    ->where('member_no', $memberno)
+                    ->sum('amount');
+
+        $statements = [
+            '2022' => [100, 150, 200, 180, 120, 250, 300, 210, 180, 150, 200, 250],
+            '2021' => [90, 130, 180, 160, 110, 220, 280, 200, 170, 140, 190, 240],
+            '2023' => [150, 130, 180, 160, 110, 220, 280, 200, 170, 140, 190, 240],
+            '2024' => [200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            
+            // Add more years and contributions as needed
+        ];
+
+        $distinctYears = DB::table('monthly_contributions')
+            ->select('payment_year')
+            ->where('member_no', $memberno)
+            ->distinct()
+            ->pluck('payment_year');
+
+        $statements = [];
+
+      // Loop through distinct years and fetch sums for each year
+        foreach ($distinctYears as $year) {
+            $totalSum = DB::table('monthly_contributions')
+                ->select(DB::raw('SUM(amount) as total_amount'), 'payment_month')
+                ->where('member_no', $memberno)
+                ->where('payment_year', $year)
+                ->groupBy('payment_month')
+                ->orderBy('payment_month')
+                ->pluck('total_amount', 'payment_month')
+                ->toArray();
+
+           
+            // Fill the array with 0 for missing months
+                $statements[$year] = [
+                    $totalSum[1] ?? 0,  // January
+                    $totalSum[2] ?? 0,  // February
+                    $totalSum[3] ?? 0,  // March
+                    $totalSum[4] ?? 0,  // April
+                    $totalSum[5] ?? 0,  // May
+                    $totalSum[6] ?? 0,  // June
+                    $totalSum[7] ?? 0,  // July
+                    $totalSum[8] ?? 0,  // August
+                    $totalSum[9] ?? 0,  // September
+                    $totalSum[10] ?? 0, // October
+                    $totalSum[11] ?? 0, // November
+                    $totalSum[12] ?? 0, // December
+                ];
+        }
+
+        //return $statements;
+
+
+        $data=[
+            'contributions' => $contributions,
+            'statements' => $statements,
+            'memberData' => $memberData,
+            'Totalcontributions' => $Totalcontributions,
+            
+
+        ];
+
+       // return view('dashone.statement')->with($data);
+
+       // $pdf = PDF::loadView('dashone.statement', $data);
+       // return $pdf->download('ClientStatement.pdf');
+       // return $pdf->stream();
+
+
+        $pdf = PDF::loadView('dashone.statement', $data);
+        $pdf->setPaper('L', 'landscape');
+              return $pdf->stream();
+    }
+
+    public function viewcontributingMembers()
+    {
+        $contributions="";
+
+        
+        $Members = DB::table('membership')->get();
+
+        $Members = DB::table('membership')
+            ->join('monthly_contributions', 'membership.memberno', '=', 'monthly_contributions.member_no')
+            ->select('membership.*')
+            ->distinct()
+            ->get();
+
+        //return $Members;
+
+
+        $data=[
+            'contributions' => $contributions,
+            'Members'=> $Members
+            
+
+        ];
+
+        return view('dashone.membercontributions')->with($data);
+    }
+
+
     public function ContributionsReminder()
     {
 

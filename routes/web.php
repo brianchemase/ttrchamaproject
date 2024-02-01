@@ -42,6 +42,9 @@ Route::group(['prefix' => 'admins'], function() {
     //statement
     Route::POST('/Statement', [ContributionsController::class, 'statement'])->name('mystatement');
 
+    Route::get('/ViewContributingMembers', [ContributionsController::class, 'viewcontributingMembers'])->name('viewcontributingMembers');
+    Route::GET('/client/statement/{memberno}', [ContributionsController::class, 'tablestatement'])->name('singlememberstatement');
+
     Route::get('/GenerateStatement', [ContributionsController::class, 'Memberstatement'])->name('memberstatement');
 
     

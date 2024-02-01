@@ -6,11 +6,11 @@
 @section('content')
 <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Registered Members </h3>
+              <h3 class="page-title"> Registered Contributing Members </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Members Register</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Registered Members</li>
+                  <li class="breadcrumb-item"><a href="#">Contributing Members</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Contribution Summary</li>
                 </ol>
               </nav>
             </div>
@@ -18,8 +18,8 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Registered TTR Members</h4>
-                    <p class="card-description"> List Showing Registered TTR Members with their bio data
+                    <h4 class="card-title">Contributing Members</h4>
+                    <p class="card-description"> A table showing list of contributing members on the Monthly Contributions
                     </p>
                     <table id="example" class="table table-striped" style="width:100%">
                           <thead>
@@ -43,6 +43,7 @@
                                       <td>{{ $member->phone_number }}</td>
                                        
                                         <td>
+                                        <a class="btn btn-primary btn-sm btn-rounded" href="{{ route('singlememberstatement', ['memberno' => $member->memberno]) }}" target="_blank"> View Statement </a>
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded" data-toggle="modal" data-target="#viewModal{{ $member->memberno }}"> <i class="mdi mdi-file-check btn-icon-prepend"></i> View
                         </button>
 
