@@ -13,8 +13,27 @@ class AdministrationController extends Controller
     {
         $contributions="";
         $MonthCollection="2500";
+
+        $columnName = 'your_column_name';
+        $tableName = 'your_table_name';
+        $dateColumn = 'your_date_column';
+        $month = 1; // Replace with your desired month
+        $year = 2023; // Replace with your desired year
+
+        $currentMonth = date('n'); // Get the current month without leading zeros
+        $currentYear = date('Y'); // Get the current year
+
+        $MonthCollection = DB::table('monthly_contributions')
+            ->where('payment_month', $currentMonth)
+            ->where('payment_year', $currentYear)
+            ->sum('amount');
+
+
+
         $LastMonthCollection="12,500";
-        $members="400";
+        //$members="400";
+
+        $members = DB::table('membership')->count();
 
         //https://demo.bootstrapdash.com/purple/jquery/template/demo_1/pages/samples/widgets.html
 

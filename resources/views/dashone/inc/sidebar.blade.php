@@ -49,6 +49,20 @@
               </div>
             </li> -->
 
+              <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-statements" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Contributions</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic-statements">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{route('Monthlycontributions')}}">Register Contribution</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{route('memberstatement')}}">Generate Statement</a></li>
+                </ul>
+              </div>
+            </li>
+
 
             <li class="nav-item">
               <a class="nav-link" href="{{route('Monthlycontributions')}}">
@@ -56,20 +70,20 @@
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="{{route('dashoneform')}}">
                 <span class="menu-title">Forms</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
-            </li>
+            </li> -->
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="{{route('dashoneformtable')}}">
                 <span class="menu-title">Form table</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">
                 <span class="menu-title">Charts</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
@@ -80,8 +94,8 @@
                 <span class="menu-title">Tables</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Sample Pages</span>
                 <i class="menu-arrow"></i>
@@ -96,8 +110,8 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
                 </ul>
               </div>
-            </li>
-            <li class="nav-item sidebar-actions">
+            </li> -->
+            <!-- <li class="nav-item sidebar-actions">
               <span class="nav-link">
                 <div class="border-bottom">
                   <h6 class="font-weight-normal mb-3">Projects</h6>
@@ -113,6 +127,6 @@
                   </ul>
                 </div>
               </span>
-            </li>
+            </li> -->
           </ul>
         </nav>

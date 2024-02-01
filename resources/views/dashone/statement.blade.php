@@ -34,10 +34,10 @@
     <table>
         <thead>
             <tr>
-                <th align="centre">Member name : Names</th>
-                <th align="centre">Member No: Number</th>
-                <th align="centre">Member Contact: 0712345678</th>
-                <th align="centre">Total Contribution: KES 25,000</th>
+                <th align="centre">Member No: {{ $memberData->memberno ?? '' }}</th>
+                <th align="centre">Member name : {{ $memberData->full_name ?? '' }}</th>
+                <th align="centre">Member Contact: {{ $memberData->phone_number ?? '' }}</th>
+                <th align="centre">Total Contribution: KES {{$Totalcontributions}}</th>
             </tr>
             <tr>
                 <th colspan="3">Year</th>

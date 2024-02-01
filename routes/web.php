@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/MonthlyReminder', [ContributionsController::class, 'ContributionsReminder'])->name('ContributionsReminder');
+
 
 Route::group(['prefix' => 'admins'], function() {
 
@@ -38,7 +40,11 @@ Route::group(['prefix' => 'admins'], function() {
 
 
     //statement
-    Route::get('/Statement', [ContributionsController::class, 'statement'])->name('mystatement');
+    Route::POST('/Statement', [ContributionsController::class, 'statement'])->name('mystatement');
+
+    Route::get('/GenerateStatement', [ContributionsController::class, 'Memberstatement'])->name('memberstatement');
+
+    
 
 
 
