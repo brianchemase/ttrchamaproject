@@ -77,6 +77,10 @@ class ContributionsController extends Controller
 
 
         $year = Carbon::now()->year;
+        $currentMonthWord = now()->format('F');
+
+        $memberno=$request->input('memberno');
+        $contribution=$request->input('contribution');
 
         // Save the form data to the database
         // Assuming you have a "contributions" table
@@ -89,6 +93,25 @@ class ContributionsController extends Controller
             // Add other fields as needed
         ]);
 
+        $memberData = DB::table('membership')->where('memberno', $memberno)->first();
+
+        if ($memberData) {
+            $phone = $memberData->phone_number;
+            $fullName = $memberData->full_name;
+           
+            // Split the full name into words
+            $words = explode(' ', $fullName);
+
+            // Get the first word (first name)
+            $firstName = $words[0];
+
+            // Capitalize the first letter
+            $memberfirstname = ucfirst(strtolower($firstName));
+
+            $message="Dear $memberfirstname,\nWe have received your monthly contribution of KES $contribution for the month of $currentMonthWord.\n Thank you for being loyal. Regards\n TTR ";
+            $Notify = $this->SendNotification($phone, $message);
+            // Now $phoneNumber contains the phone number
+        }
         // Redirect back or wherever you want after submitting
         return redirect()->back()->with('success', 'Contribution registered successfully!');
     }
