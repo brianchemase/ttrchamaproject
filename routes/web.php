@@ -56,3 +56,24 @@ Route::group(['prefix' => 'admins'], function() {
     Route::get('/blank', [AdministrationController::class, 'home'])->name('dashoneblank');
     Route::get('/formtable', [AdministrationController::class, 'formtable'])->name('dashoneformtable');
 });
+
+
+Auth::routes();
+// Route User
+Route::middleware(['auth','user-role:user'])->group(function()
+{
+    Route::get("/home",[HomeController::class, 'userHome'])->name("home");
+});
+// Route Editor
+Route::middleware(['auth','user-role:editor'])->group(function()
+{
+    Route::get("/editor/home",[HomeController::class, 'editorHome'])->name("editor.home");
+});
+// Route Admin
+Route::middleware(['auth','user-role:admin'])->group(function()
+{
+    Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

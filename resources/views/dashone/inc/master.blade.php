@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- {{asset('dashboard/')}} -->
+  <!-- {{asset('dashboard/dash1/')}} -->
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
