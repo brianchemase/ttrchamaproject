@@ -433,6 +433,55 @@ class ContributionsController extends Controller
        // return "Response: " . $response;
     }
 
+    public function SendNotification1($phone, $message)
+    {
+        set_time_limit(10000); // Set to a higher value than the default
+       
+        $tel = $phone; // Copy the original phone number
+        $code = "254";
+
+        // Check if the phone number starts with "254"
+        if (substr($tel, 0, 3) !== "254") {
+            // Check if the phone number starts with "07"
+            if (substr($tel, 0, 2) === "07") {
+                // Remove the first zero and add the country code
+                $tel = $code . substr($tel, 1);
+            } else {
+                // Add the country code to other cases
+                $tel = $code . $tel;
+            }
+        }
+
+             $to = $tel;
+             //return $to;
+
+                $ApiKey = 'mrbZnidZL1aisGhRem5yQ38v1DjFZXdFamYpRr21YtQ=';
+                $ClientId = 'ae5e5440-3968-4422-8018-feb27cebd201';
+                $SenderId = 'SUCDIAGENCY';
+                $AccessKey = 'mwNYuBUe0fxbYqDyyYkz9gsgNIH5cP0H';
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://api.onfonmedia.co.ke/v1/sms/SendBulkSMS",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "{\n  \"SenderId\": \"".$SenderId."\",\n  \"MessageParameters\": [\n    {\n      \"Number\": \"".$to."\",\n      \"Text\": \"".$message."\"\n    }\n  ],\n  \"ApiKey\": \"".$ApiKey."\",\n  \"ClientId\": \"".$ClientId."\"\n}",
+                CURLOPT_HTTPHEADER => array(
+                    "accesskey: ".$AccessKey."",
+                    "cache-control: no-cache",
+                    "content-type: application/json"
+                ),
+                ));
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+                curl_close($curl);
+
+                //return $response;
+    }
+
 
 
 
