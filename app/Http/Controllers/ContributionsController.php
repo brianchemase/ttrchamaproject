@@ -345,6 +345,21 @@ class ContributionsController extends Controller
             })
             ->get();
 
+            $missingPayments = DB::table('membership')
+            ->select('memberno', 'full_name', 'phone_number')
+            ->whereNotIn('memberno', function ($query) use ($currentMonth, $currentYear) {
+                $query->select('member_no')
+                    ->from('monthly_contributions')
+                    ->where('payment_month', '=', $currentMonth)
+                    ->where('payment_year', '=', $currentYear);
+                   
+            })
+            ->get();
+
+           // return $missingPayments;
+
+
+
             //return $currentMonth;
 
         // Output or use $missingPayments as needed
@@ -379,7 +394,7 @@ class ContributionsController extends Controller
                 // Use your preferred method to send the message (e.g., SMS, email, etc.)
                 // Example: You can use Laravel's notification system or a third-party API
                 // For demonstration purposes, let's just print the message
-                $Notify = $this->SendNotification($phone, $message);
+                //$Notify = $this->SendNotification($phone, $message);
                 echo "Sending message to $fullName ($phone): $message\n";
             }
         
