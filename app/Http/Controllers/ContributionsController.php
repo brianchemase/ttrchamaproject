@@ -333,18 +333,6 @@ class ContributionsController extends Controller
         $currentYear = now()->format('Y');
        // return $currentMonth;
        
-
-        $missingPayments = DB::table('membership')
-            ->select('memberno', 'full_name', 'phone_number')
-            ->whereNotIn('memberno', function ($query) use ($currentMonth, $currentYear) {
-                $query->select('memberno')
-                    ->from('monthly_contributions')
-                    ->where('payment_month', '=', $currentMonth)
-                    ->where('payment_year', '=', $currentYear)
-                    ->whereNotNull('amount'); // Assuming there is a column 'amount' indicating payment
-            })
-            ->get();
-
             $missingPayments = DB::table('membership')
             ->select('memberno', 'full_name', 'phone_number')
             ->whereNotIn('memberno', function ($query) use ($currentMonth, $currentYear) {
@@ -356,11 +344,6 @@ class ContributionsController extends Controller
             })
             ->get();
 
-           // return $missingPayments;
-
-
-
-            //return $currentMonth;
 
         // Output or use $missingPayments as needed
 
